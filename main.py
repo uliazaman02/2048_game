@@ -4,6 +4,10 @@ TO-DO:
 - add some comments and function definitions
 """
 
+# from utilities import generate_piece, print_board
+
+# DEV_MODE = False
+
 def moveLeft(game_board: [[int, ], ]) -> [[int, ], ]:
     for col in reversed(range (1, len(game_board))):
         for row in range(len(game_board)):
@@ -37,6 +41,17 @@ def moveRight(game_board: [[int, ], ]) -> [[int, ], ]:
             if game_board[row][col] != 0:
                 if game_board[row][col+1] == 0:
                     game_board[row][col+1] += game_board[row][col]
+                    game_board[row][col] = 0
+
+def moveUp(game_board: [[int, ], ]) -> [[int, ], ]:
+    for col in range(len(game_board)):
+        for row in reversed(range (1, len(game_board))):
+            if game_board[row][col] != 0:
+                if game_board[row-1][col] == 0:
+                    game_board[row-1][col] += game_board[row][col]
+                    game_board[row][col] = 0
+                elif game_board[row][col] == game_board[row-1][col]:
+                    game_board[row-1][col] += game_board[row][col]
                     game_board[row][col] = 0
 
 
