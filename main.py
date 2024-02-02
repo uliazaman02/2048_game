@@ -4,7 +4,7 @@ TO-DO:
 - add some comments and function definitions
 """
 
-from utilities import generate_piece #, printBoard
+from utilities import generate_piece, print_board
 
 # DEV_MODE = False
 
@@ -97,6 +97,8 @@ def main(game_board: [[int, ], ]) -> [[int, ], ]:
 
             if game_over(game_board):
                 break
+                
+            print_board(game_board)
 
 
 
