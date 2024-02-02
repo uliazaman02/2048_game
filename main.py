@@ -65,6 +65,12 @@ def moveDown(game_board: [[int, ], ]) -> [[int, ], ]:
                     game_board[row+1][col] += game_board[row][col]
                     game_board[row][col] = 0
 
+def gameWon(game_board: [[int, ], ]) -> [[int, ], ]:
+    for col in range(1, (len(game_board))-1):
+        for row in range(1, (len(game_board))-1):   
+            if game_board[row][col] == 2048:
+                return True 
+
 
 if __name__ == "__main__":
     print("hi")
