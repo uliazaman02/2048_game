@@ -4,7 +4,7 @@ TO-DO:
 - add some comments and function definitions
 """
 
-from utilities import generate_piece, printBoard
+from utilities import generate_piece #, printBoard
 
 # DEV_MODE = False
 
