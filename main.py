@@ -4,7 +4,7 @@ TO-DO:
 - add some comments and function definitions
 """
 
-# from utilities import generate_piece, print_board
+from utilities import generatePiece, printBoard
 
 # DEV_MODE = False
 
@@ -71,7 +71,18 @@ def gameWon(game_board: [[int, ], ]) -> [[int, ], ]:
             if game_board[row][col] == 2048:
                 return True 
 
+def main(game_board: [[int, ], ]) -> [[int, ], ]:
+    piece = generatePiece(game_board)
+    game_board[piece['row']-1][piece['col']-1] = piece['val']
+    
+    computerTurn = True
+
+
+
 
 if __name__ == "__main__":
     print("hi")
-    moveLeft([[]])
+    main([[0, 0, 0, 0],
+          [0, 0, 0, 0],
+          [0, 0, 0, 0],
+          [0, 0, 0, 0]])
