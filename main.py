@@ -24,7 +24,6 @@ def move_left(game_board: [[int, ], ]) -> [[int, ], ]:
                 if game_board[row][col-1] == 0:
                     game_board[row][col-1] += game_board[row][col]
                     game_board[row][col] = 0
-    print("bye")
 
 def move_right(game_board: [[int, ], ]) -> [[int, ], ]:
     for col in range((len(game_board)) - 1):
@@ -100,11 +99,37 @@ def main(game_board: [[int, ], ]) -> [[int, ], ]:
                 
             print_board(game_board)
 
+            move = input().lower()
+            keys = ['w', 'a', 's', 'd', 'q']
+
+            if move not in keys:
+                move = input().lower()
+
+            if move == 'q':
+                print("Goodbye")
+                break
+            elif move == 'a':
+                move_left(game_board)
+            elif move == 'd':
+                move_right(game_board)
+            elif move == 'w':
+                move_up(game_board)
+            elif move == 's':
+                move_down(game_board)
+            
+            if game_won(game_board) == True:
+                break
+
+            computerTurn = True
+        
+        return game_board
+        return generate_piece
+
 
 
 
 if __name__ == "__main__":
-    print("hi")
+    print("Welcome to the 2048 game")
     main([[0, 0, 0, 0],
           [0, 0, 0, 0],
           [0, 0, 0, 0],
