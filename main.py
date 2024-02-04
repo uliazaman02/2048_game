@@ -118,13 +118,12 @@ def main(game_board: [[int, ], ]) -> [[int, ], ]:
                 move_down(game_board)
             
             if game_won(game_board) == True:
+                print("Game Won")
                 break
 
             computerTurn = True
         
-        return game_board
-        return generate_piece
-
+    return game_board
 
 
 
