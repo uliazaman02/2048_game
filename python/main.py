@@ -40,16 +40,18 @@ def move_right(game_board: [[int, ], ]) -> [[int, ], ]:
                 game_board[row][col] = 0
 
 def move_up(game_board: [[int, ], ]) -> [[int, ], ]:
-    for col in range(len(game_board)):
-        for row in reversed(range (1, len(game_board))):
+    for row in range(len(game_board)):
+        for col in range(len(game_board)):
             if game_board[row][col] != 0:
-                if game_board[row-1][col] == 0:
-                    game_board[row-1][col] += game_board[row][col]
-                    game_board[row][col] = 0
-                elif game_board[row][col] == game_board[row-1][col]:
-                    game_board[row-1][col] += game_board[row][col]
-                    game_board[row][col] = 0
-    # print("completed up")
+                for newRow in range(row+1, len(game_board)):
+                    if game_board[row][col] == game_board[newRow][col]:
+                        game_board[row][col] *= 2
+                        game_board[newRow][col] = 0
+        for row in reversed(range(1, len(game_board))):
+        for col in range(len(game_board)):
+            if (game_board[row][col] != 0) & (game_board[row-1][col] == 0):
+                game_board[row-1][col] = game_board[row][col]
+                game_board[row][col] = 0
 
 def move_down(game_board: [[int, ], ]) -> [[int, ], ]:
     for col in range(len(game_board)):
