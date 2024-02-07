@@ -16,7 +16,11 @@ function generate_piece() {
 }
 
 function move_left() {
-    
+    for (let col = game_board.length - 1; col >= 1; col--) {
+        for (row = 0; row < game_board.length; row++) {
+            
+        }
+    }
 }
 
 function initialize() {
@@ -29,6 +33,8 @@ function initialize() {
     // console.log(game_board[2])
     // console.log(game_board[3])
     let computerTurn = true;
+
+    move_left();
 
     // while (true) {
     //     if (computerTurn === true) {
