@@ -54,6 +54,9 @@ def move_up(game_board: [[int, ], ]) -> [[int, ], ]:
                 game_board[row][col] = 0
 
 def move_down(game_board: [[int, ], ]) -> [[int, ], ]:
+    """
+    Issue: all numbers need to move all the way down, possibly add indexxes to do this ?
+    """
     for row in reversed(range(len(game_board))):
         for col in range(len(game_board)):
             if game_board[row][col] != 0:
