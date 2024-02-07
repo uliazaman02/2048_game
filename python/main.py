@@ -7,8 +7,6 @@ TO-DO:
 
 from utilities import generate_piece, print_board
 
-# DEV_MODE = False
-
 def move_left(game_board: [[int, ], ]) -> [[int, ], ]:
     """
     want to start traversing from left hand side
@@ -28,22 +26,18 @@ def move_left(game_board: [[int, ], ]) -> [[int, ], ]:
                 game_board[row][col] = 0
 
 def move_right(game_board: [[int, ], ]) -> [[int, ], ]:
-    for col in range((len(game_board)) - 1):
-        for row in range(len(game_board)):
+    for row in range(len(game_board)):
+        for col in reversed(range(len(game_board))):
             if game_board[row][col] != 0:
-                if game_board[row][col+1] == 0:
-                    game_board[row][col+1] += game_board[row][col]
-                    game_board[row][col] = 0
-                elif game_board[row][col] == game_board[row][col+1]:
-                    game_board[row][col+1] += game_board[row][col]
-                    game_board[row][col] = 0
-    for col in reversed(range((len(game_board))-1)):
-        for row in range(len(game_board)):
-            if game_board[row][col] != 0:
-                if game_board[row][col+1] == 0:
-                    game_board[row][col+1] += game_board[row][col]
-                    game_board[row][col] = 0
-    # print("completed right")
+                for newCol in reversed(range(col)):
+                    if game_board[row][col] == game_board[row][newCol]:
+                        game_board[row][col] *= 2
+                        game_board[row][newCol] = 0
+    for row in range(len(game_board)):
+        for col in range(len(game_board)-1):
+            if (game_board[row][col] != 0) & (game_board[row][col+1] == 0):
+                game_board[row][col+1] = game_board[row][col]
+                game_board[row][col] = 0
 
 def move_up(game_board: [[int, ], ]) -> [[int, ], ]:
     for col in range(len(game_board)):
