@@ -3,6 +3,9 @@ TO-DO:
 - need to clarify concise moves to avoid repition
 - add some comments and function definitions
 - game_over not working
+
+[8, 0, 4, 0] -> moveRight -> [0, 8, 0, 4]
+[0, 8, 2, 8] -> moveLeft -> [16, 2, 2, 0]
 """
 
 from utilities import generate_piece, print_board
@@ -86,59 +89,50 @@ def game_over(game_board: [[int, ], ]) -> bool:
             #                 if game_board[row][col] != game_board[row+1]:
             #                     return True
 
+
 def main(game_board: [[int, ], ]) -> [[int, ], ]:
-    # piece = generate_piece(game_board)
-    # game_board[piece['row']][piece['col']] = piece['val']
-    
-    computerTurn = True
+    for i in range(2):
+        piece = generate_piece(game_board)
+        game_board[piece['row']][piece['col']] = piece['val']
 
     while True:
-        if computerTurn == True:
-            # piece = generate_piece(game_board)
-            # game_board[piece['row']][piece['col']] = piece['val']
-            computerTurn = False
-
-            if game_over(game_board):
-                print("Game over")
-                break
-                
-            print_board(game_board)
-
-            move = input().lower()
-            keys = ['w', 'a', 's', 'd', 'q']
-
-            if move not in keys:
-                move = input().lower()
-
-            if move == 'q':
-                print("Goodbye")
-                break
-            elif move == 'a':
-                move_left(game_board)
-            elif move == 'd':
-                move_right(game_board)
-            elif move == 'w':
-                move_up(game_board)
-            elif move == 's':
-                move_down(game_board)
+        if game_over(game_board):
+            print("Game over")
+            break
             
-            if game_won(game_board) == True:
-                print("Game Won")
-                break
+        print_board(game_board)
 
-            computerTurn = True
+        move = input().lower()
+        keys = ['w', 'a', 's', 'd', 'q']
+
+        if move not in keys:
+            move = input().lower()
+
+        if move == 'q':
+            print("Goodbye")
+            break
+        elif move == 'a':
+            move_left(game_board)
+        elif move == 'd':
+            move_right(game_board)
+        elif move == 'w':
+            move_up(game_board)
+        elif move == 's':
+            move_down(game_board)
         
+        if game_won(game_board) == True:
+            print("Game Won")
+            break
+        piece = generate_piece(game_board)
+        game_board[piece['row']][piece['col']] = piece['val']
+
     return game_board
 
 
 
 if __name__ == "__main__":
     print("Welcome to the 2048 game")
-    # main([[0, 0, 0, 0],
-    #       [0, 0, 0, 0],
-    #       [0, 0, 0, 0],
-    #       [0, 0, 0, 0]])
     main([[0, 0, 0, 0],
-          [2, 2, 0, 2],
-          [2, 0, 2, 2],
+          [0, 0, 0, 0],
+          [0, 0, 0, 0],
           [0, 0, 0, 0]])
