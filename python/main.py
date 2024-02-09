@@ -37,10 +37,14 @@ def move_right(game_board: [[int, ], ]) -> [[int, ], ]:
                         game_board[row][col] *= 2
                         game_board[row][newCol] = 0
     for row in range(len(game_board)):
-        for col in range(len(game_board)-1):
-            if (game_board[row][col] != 0) & (game_board[row][col+1] == 0):
-                game_board[row][col+1] = game_board[row][col]
-                game_board[row][col] = 0
+        for col in reversed(range(1, len(game_board))):
+            if game_board[row][col] == 0:
+                found = False
+                for newCol in reversed(range(col)):
+                    if (game_board[row][newCol] != 0) & (found == False):
+                        found = True
+                        game_board[row][col] = game_board[row][newCol]
+                        game_board[row][newCol] = 0
 
 def move_up(game_board: [[int, ], ]) -> [[int, ], ]:
     for row in range(len(game_board)):
