@@ -6,6 +6,10 @@ TO-DO:
 
 [8, 0, 4, 0] -> moveRight -> [0, 8, 0, 4]
 [0, 8, 2, 8] -> moveLeft -> [16, 2, 2, 0]
+[0, 4, 0, 4] -> moveLeft -> [4, 0, 0, 0]
+[4, 2, 0, 2] -> moveDown -> [0, 0, 0, 8]
+[2, 4, 8, 2] -> moveLeft -> [4, 4, 8, 0]
+[0, 2, 0, 4] -> moveUp -> 
 """
 
 from utilities import generate_piece, print_board
@@ -22,6 +26,9 @@ def move_left(game_board: [[int, ], ]) -> [[int, ], ]:
                     if game_board[row][col] == game_board[row][newCol]:
                         game_board[row][col] *= 2
                         game_board[row][newCol] = 0
+                        break
+                    if game_board[row][newCol] != 0:
+                        break
     for row in range(len(game_board)):
         for col in reversed(range(1, len(game_board))):
             if (game_board[row][col] != 0) & (game_board[row][col-1] == 0):
@@ -36,6 +43,9 @@ def move_right(game_board: [[int, ], ]) -> [[int, ], ]:
                     if game_board[row][col] == game_board[row][newCol]:
                         game_board[row][col] *= 2
                         game_board[row][newCol] = 0
+                        break
+                    if game_board[row][newCol] != 0:
+                        break
     for row in range(len(game_board)):
         for col in reversed(range(1, len(game_board))):
             if game_board[row][col] == 0:
@@ -54,11 +64,16 @@ def move_up(game_board: [[int, ], ]) -> [[int, ], ]:
                     if game_board[row][col] == game_board[newRow][col]:
                         game_board[row][col] *= 2
                         game_board[newRow][col] = 0
-    for row in reversed(range(1, len(game_board))):
+                        break
+
+    for row in range(len(game_board)):
         for col in range(len(game_board)):
-            if (game_board[row][col] != 0) & (game_board[row-1][col] == 0):
-                game_board[row-1][col] = game_board[row][col]
-                game_board[row][col] = 0
+            if (game_board[row][col] != 0):
+                for newRow in range(0, row):
+                    if game_board[newRow][col] == 0:
+                        game_board[newRow][col] = game_board[row][col]
+                        game_board[row][col] = 0
+                        break
 
 def move_down(game_board: [[int, ], ]) -> [[int, ], ]:
     for row in reversed(range(len(game_board))):
@@ -68,6 +83,7 @@ def move_down(game_board: [[int, ], ]) -> [[int, ], ]:
                     if game_board[row][col] == game_board[newRow][col]:
                         game_board[row][col] *= 2
                         game_board[newRow][col] = 0
+                        break
     for row in range(len(game_board)-1):
         for col in range(len(game_board)):
             if (game_board[row][col] != 0) & (game_board[row+1][col] == 0):
